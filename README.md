@@ -21,6 +21,16 @@ description: Upload and download files.
 #         under the License.
 -->
 
+## improveit 360 Notes
+- Needed to fork and use branch 1.7.x to comment out the following code in `CDVFileTransfer.m`
+```
+NSString* userAgent = [self.commandDelegate userAgent];
+if (userAgent) {
+    [req setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+}
+```
+- When updating to `cordova-ios@6.1.1`, it caused the code above to not work. Upgrading to latest `cordova-plugin-file-transfer@2.0.0-dev` caused files not to download because Bearer token "wasn't valid" although all other requests with that bearer token worked.
+
 |AppVeyor|Travis CI|
 |:-:|:-:|
 |[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-file-transfer?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-file-transfer)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-file-transfer.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-file-transfer)|
